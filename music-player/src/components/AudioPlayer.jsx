@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import "./AudioPlayer.css";
-import { GrPause, GrPlay } from "react-icons/gr";
+import { GrPause, GrPlay, GrUnlink, GrUpdate } from "react-icons/gr";
 
 const AudioPlayer = ({ audioSrc }) => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -63,7 +63,7 @@ const AudioPlayer = ({ audioSrc }) => {
   useEffect(() => {
     if (audioRef.current) {
       audioRef.current.addEventListener("timeupdate", handleTimeUpdate);
-      
+
       // Watch for the 'ended' event to reset the playback
       audioRef.current.addEventListener("ended", () => {
         audioRef.current.currentTime = 0;
@@ -107,16 +107,16 @@ const AudioPlayer = ({ audioSrc }) => {
             <p>{formatTime(currentTime)}</p>
             <p>{formatTime(duration)}</p>
           </div>
-          <button className="btn" onClick={handlePlayPause}>
-            <span>
-              {isPlaying ? <GrPause size='22px'/> : <GrPlay size='22px'/>}
-            </span>
-          </button>
-          <button className="btn" onClick={handleLoop}>
-            <span>
-              {isLooping ? 'unloop' : 'loop'}
-            </span>
-          </button>
+          <div className="buttons-player">
+            <button className="btn" onClick={handlePlayPause}>
+              <span>
+                {isPlaying ? <GrPause size="22px" /> : <GrPlay size="22px" />}
+              </span>
+            </button>
+            <button className="btn-loop" onClick={handleLoop}>
+              <span>{isLooping ? <GrUnlink /> : <GrUpdate />}</span>
+            </button>
+          </div>
         </div>
       </div>
     </>

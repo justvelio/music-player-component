@@ -41,6 +41,20 @@ input[type="range"] {
   cursor: pointer;
   margin: 5px auto 10px auto;
 }
+.btn-loop {
+  width: 70px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(69, 68, 68);
+  cursor: pointer;
+  margin: 5px auto 10px auto;
+}
+
+.buttons-player {
+  display: flex;
+}
 
 .song-name {
   font-size: 17px;
