@@ -1,1 +1,1 @@
-# usic-player-component
+# music-player-component
