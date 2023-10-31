@@ -7,9 +7,11 @@ const VideoPlayer = ({ videoSrc }) => {
   useEffect(() => {
     if (videoRef.current) {
       videoRef.current.controls = false;
+
+      videoRef.current.disablePictureInPicture = true;
     }
   }, []);
-  
+
     return (
         <video autoPlay loop muted playsInline ref={(ref) => { if (ref) ref.playbackRate = 0.8; }} className="video-container">
           <source src={videoSrc} type="video/mp4" />
