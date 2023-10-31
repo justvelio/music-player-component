@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import "./AudioPlayer.css";
-import { HiOutlinePause, HiArrowRightCircle } from "react-icons/hi2";
+import { GrPause, GrPlay } from "react-icons/gr";
 
 const AudioPlayer = ({ audioSrc }) => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -48,42 +48,53 @@ const AudioPlayer = ({ audioSrc }) => {
   const formatTime = (durationSeconds) => {
     const minutes = Math.floor(durationSeconds / 60);
     const seconds = Math.floor(durationSeconds % 60);
-    const formattedSeconds = seconds.toString().padStart(2, '0');
+    const formattedSeconds = seconds.toString().padStart(2, "0");
     return `${minutes}:${formattedSeconds}`;
   };
 
   useEffect(() => {
-    console.log('source:', audioSrc);
+    // console.log("source:", audioSrc);
     if (audioRef.current) {
-      audioRef.current.addEventListener('timeupdate', handleTimeUpdate);
+      audioRef.current.addEventListener("timeupdate", handleTimeUpdate);
     }
     return () => {
       if (audioRef.current) {
-        audioRef.current.removeEventListener('timeupdate', handleTimeUpdate);
+        audioRef.current.removeEventListener("timeupdate", handleTimeUpdate);
       }
     };
   }, []);
 
   return (
-    <div className="card">
-      <img src="https://f4.bcbits.com/img/0011240899_25.jpg" alt="Masta Ace" />
-      <input
-        type="range"
-        min="0"
-        max={duration}
-        value={currentTime}
-        onChange={handleSeek}
-      />
-      <audio ref={audioRef} src={audioSrc} />
+    <>
+      <div className="content">
+        <div className="card">
+          <img
+            src="https://f4.bcbits.com/img/0011240899_25.jpg"
+            alt="Masta Ace"
+          />
+          <p className="song-name">Masta Ace - Smart Dummies</p>
+          <p className="info">(Prod. by Zoom & Rectape)</p>
+          <input
+            type="range"
+            min="0"
+            max={duration}
+            value={currentTime}
+            onChange={handleSeek}
+          />
+          <audio ref={audioRef} src={audioSrc} />
 
-      <div className="duration">
-        <p>{formatTime(currentTime)}</p>
-        <p>{formatTime(duration)}</p>
+          <div className="duration">
+            <p>{formatTime(currentTime)}</p>
+            <p>{formatTime(duration)}</p>
+          </div>
+          <button className="btn" onClick={handlePlayPause}>
+            <span>
+              {isPlaying ? <GrPause style={{ back: 'white'}} size='22px'/> : <GrPlay style={{ color: 'white'}} size='22px'/>}
+            </span>
+          </button>
+        </div>
       </div>
-      <button onClick={handlePlayPause}>
-        <span>{isPlaying ? <HiOutlinePause /> : <HiArrowRightCircle />}</span>
-      </button>
-    </div>
+    </>
   );
 };
 
