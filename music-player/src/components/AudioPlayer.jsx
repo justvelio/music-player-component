@@ -6,6 +6,7 @@ const AudioPlayer = ({ audioSrc }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
+  const [isLooping, setIsLooping] = useState(false);
 
   const audioRef = useRef(null);
 
@@ -45,6 +46,13 @@ const AudioPlayer = ({ audioSrc }) => {
     }
   };
 
+  const handleLoop = () => {
+    if (audioRef.current) {
+      audioRef.current.loop = !isLooping;
+      setIsLooping(!isLooping);
+    }
+  };
+
   const formatTime = (durationSeconds) => {
     const minutes = Math.floor(durationSeconds / 60);
     const seconds = Math.floor(durationSeconds % 60);
@@ -53,13 +61,25 @@ const AudioPlayer = ({ audioSrc }) => {
   };
 
   useEffect(() => {
-    // console.log("source:", audioSrc);
     if (audioRef.current) {
       audioRef.current.addEventListener("timeupdate", handleTimeUpdate);
+      
+      // Watch for the 'ended' event to reset the playback
+      audioRef.current.addEventListener("ended", () => {
+        audioRef.current.currentTime = 0;
+        setCurrentTime(0);
+        setIsPlaying(false);
+      });
     }
+
     return () => {
       if (audioRef.current) {
         audioRef.current.removeEventListener("timeupdate", handleTimeUpdate);
+        audioRef.current.removeEventListener("ended", () => {
+          audioRef.current.currentTime = 0;
+          setCurrentTime(0);
+          setIsPlaying(false);
+        });
       }
     };
   }, []);
@@ -89,7 +109,12 @@ const AudioPlayer = ({ audioSrc }) => {
           </div>
           <button className="btn" onClick={handlePlayPause}>
             <span>
-              {isPlaying ? <GrPause style={{ back: 'white'}} size='22px'/> : <GrPlay style={{ color: 'white'}} size='22px'/>}
+              {isPlaying ? <GrPause size='22px'/> : <GrPlay size='22px'/>}
+            </span>
+          </button>
+          <button className="btn" onClick={handleLoop}>
+            <span>
+              {isLooping ? 'unloop' : 'loop'}
             </span>
           </button>
         </div>
