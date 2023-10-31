@@ -58,8 +58,10 @@ input[type="range"] {
 
 .song-name {
   font-size: 17px;
+  color: red;
 }
 
 .info {
   font-size: 17px;
+  color: red;
 }
