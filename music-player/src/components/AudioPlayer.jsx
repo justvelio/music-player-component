@@ -92,8 +92,8 @@ const AudioPlayer = ({ audioSrc }) => {
             src="https://f4.bcbits.com/img/0011240899_25.jpg"
             alt="Masta Ace"
           />
-          <p className="song-name">Masta Ace - Smart Dummies</p>
-          <p className="info">(Prod. by Zoom & Rectape)</p>
+          <span className="song-name">Masta Ace - Smart Dummies</span>
+          <span className="info">(Prod. by Zoom & Rectape)</span>
           <input
             type="range"
             min="0"
