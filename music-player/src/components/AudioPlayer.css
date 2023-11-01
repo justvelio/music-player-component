@@ -84,15 +84,15 @@ input[type="range"] {
   content: "";
   background: linear-gradient(
     45deg,
-    #cc0000,
-    #cc6600,
-    #ccc600,
-    #339900,
-    #008c7a,
+    #0202d7,
+    #0107a4,
+    #04029e,
+    #030fb0,
+    #001a8c,
     #001a3d,
-    #6500cc,
-    #cc0099,
-    #cc0000
+    #0f0161,
+    #030030,
+    #000000
   );
   position: absolute;
   top: -2px;
