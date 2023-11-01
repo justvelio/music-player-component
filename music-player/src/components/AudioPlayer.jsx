@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import "./AudioPlayer.css";
-import { GrPause, GrPlay, GrUnlink, GrUpdate } from "react-icons/gr";
+import { PlayCircleOutlined, PauseCircleOutlined, RedoOutlined } from '@ant-design/icons'
 
 const AudioPlayer = ({ audioSrc }) => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -64,7 +64,6 @@ const AudioPlayer = ({ audioSrc }) => {
     if (audioRef.current) {
       audioRef.current.addEventListener("timeupdate", handleTimeUpdate);
 
-      // Watch for the 'ended' event to reset the playback
       audioRef.current.addEventListener("ended", () => {
         audioRef.current.currentTime = 0;
         setCurrentTime(0);
@@ -110,11 +109,11 @@ const AudioPlayer = ({ audioSrc }) => {
           <div className="buttons-player">
             <button className="btn" onClick={handlePlayPause}>
               <span>
-                {isPlaying ? <GrPause size="22px" /> : <GrPlay size="22px" />}
+                {isPlaying ? <PauseCircleOutlined size={'30px'} /> : <PlayCircleOutlined size={'30px'} /> }
               </span>
             </button>
-            <button className="btn-loop" onClick={handleLoop}>
-              <span>{isLooping ? <GrUnlink /> : <GrUpdate />}</span>
+            <button className={`btn-loop ${isLooping ? 'loop-active' : ''}`} onClick={handleLoop}>
+              <span><RedoOutlined /></span>
             </button>
           </div>
         </div>
