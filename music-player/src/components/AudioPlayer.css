@@ -41,6 +41,7 @@ input[type="range"] {
   cursor: pointer;
   margin: 5px auto 10px auto;
   border: none;
+  font-size: large;
 }
 .btn:focus {
   outline: none;
@@ -57,6 +58,7 @@ input[type="range"] {
   margin: 5px auto 10px auto;
   border: none;
   cursor: pointer;
+  font-size: large;
 }
 
 .btn-loop:focus {
@@ -82,15 +84,15 @@ input[type="range"] {
   content: "";
   background: linear-gradient(
     45deg,
-    #ff0000,
-    #ff7300,
-    #fffb00,
-    #48ff00,
-    #00ffd5,
-    #002bff,
-    #7a00ff,
-    #ff00c8,
-    #ff0000
+    #cc0000,
+    #cc6600,
+    #ccc600,
+    #339900,
+    #008c7a,
+    #001a3d,
+    #6500cc,
+    #cc0099,
+    #cc0000
   );
   position: absolute;
   top: -2px;

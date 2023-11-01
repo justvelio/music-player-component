@@ -113,7 +113,7 @@ const AudioPlayer = ({ audioSrc }) => {
               </span>
             </button>
             <button className={`btn-loop ${isLooping ? 'loop-active' : ''}`} onClick={handleLoop}>
-              <span><RedoOutlined /></span>
+              <span><RedoOutlined size='30px'/></span>
             </button>
           </div>
         </div>
